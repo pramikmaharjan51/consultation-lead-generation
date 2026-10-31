@@ -1066,30 +1066,38 @@
 
         (function () {
             const root = document.querySelector('.ff-6ae4d20a710a75e6f8beaeab');
-            const form = document.getElementById('consultationForm');
             const bookingSection = document.getElementById('booking');
             const thankYouSection = document.getElementById('thankYouSection');
+            if (!root || !bookingSection || !thankYouSection) return;
 
-            if (!root || !form || !bookingSection || !thankYouSection) return;
-            // Flodesk displays its success element only after a successful submission.
-            const successEl = root.querySelector('[data-ff-el="success"]');
-            let hasRedirected = false;
-
+            let completed = false;
             function showThankYouAfterSuccess() {
-                if (hasRedirected || !successEl) return;
+                if (completed) return;
 
-                const style = window.getComputedStyle(successEl);
-                const isVisible = style.display !== 'none' &&
-                                  style.visibility !== 'hidden' &&
-                                  successEl.getClientRects().length > 0;
+                const successEl = root.querySelector('[data-ff-el="success"]');
+                const stage = (root.getAttribute('data-ff-stage') || '').toLowerCase();
+                const successVisible = successEl && (
+                    successEl.getClientRects().length > 0 &&
+                    window.getComputedStyle(successEl).visibility !== 'hidden'
+                );
+                const successState = root.classList.contains('fd-has-success') ||
+                                     stage === 'success' ||
+                                     (successVisible && successEl.textContent.trim().length > 0);
 
-                if (isVisible) {
-                    hasRedirected = true;
-                    bookingSection.style.display = 'none';
-                    thankYouSection.style.display = 'block';
-                    thankYouSection.scrollIntoView({ behavior: 'smooth' });
-                    observer.disconnect();
-                }
+                if (!successState) return;
+
+                completed = true;
+                document.documentElement.classList.add('consultation-submitted');
+                bookingSection.hidden = true;
+                bookingSection.style.display = 'none';
+                thankYouSection.hidden = false;
+                thankYouSection.style.setProperty('display', 'block', 'important');
+                thankYouSection.setAttribute('aria-live', 'polite');
+                // Do not redirect, reload, or auto-hide this section. Keep it visible.
+                window.setTimeout(function () {
+                    thankYouSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 150);
+                observer.disconnect();
             }
 
             const observer = new MutationObserver(showThankYouAfterSuccess);
@@ -1097,7 +1105,7 @@
                 attributes: true,
                 childList: true,
                 subtree: true,
-                attributeFilter: ['class', 'style']
+                attributeFilter: ['class', 'style', 'data-ff-stage', 'hidden']
             });
             showThankYouAfterSuccess();
         })();

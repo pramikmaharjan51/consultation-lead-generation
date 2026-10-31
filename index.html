@@ -458,6 +458,25 @@
             border-color: var(--primary);
         }
 
+        .form-group textarea {
+            width: 100%;
+            min-height: 110px;
+            padding: 16px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            color: var(--text-color);
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
         .form-group button {
             width: 100%;
             margin-top: 16px;
@@ -466,26 +485,16 @@
             border-radius: 4px;
         }
 
-        /* Flodesk integration: keep the existing form styling and layout. */
-        .ff-6ae4d20a710a75e6f8beaeab {
-            width: 100%;
-        }
-        .ff-6ae4d20a710a75e6f8beaeab .fd-form-error {
-            color: #ff7777;
-            margin-top: 12px;
-            font-size: 0.9rem;
-        }
-        .ff-6ae4d20a710a75e6f8beaeab .fd-form-success {
-            color: var(--primary);
-            text-align: center;
-            padding: 18px 0;
-        }
-        .ff-6ae4d20a710a75e6f8beaeab .fd-form-success p {
-            color: var(--primary);
-        }
-        .ff-6ae4d20a710a75e6f8beaeab.fd-has-success .fd-form-content {
-            display: none;
-        }
+
+        /* Flodesk embed state handling; retain the site's dark branded form styling. */
+        .ff-6ae4d20a710a75e6f8beaeab .fd-form-control { width: 100%; }
+        .ff-6ae4d20a710a75e6f8beaeab .fd-form-success { display: none; color: var(--text-color); }
+        .ff-6ae4d20a710a75e6f8beaeab.fd-has-success .fd-form-success,
+        .ff-6ae4d20a710a75e6f8beaeab[data-ff-stage="success"] .fd-form-success { display: block; }
+        .ff-6ae4d20a710a75e6f8beaeab.fd-has-success .fd-form-content { display: none; }
+        .ff-6ae4d20a710a75e6f8beaeab .fd-form-error { display: none; color: #ff8b80; margin-top: 12px; }
+        .ff-6ae4d20a710a75e6f8beaeab.fd-has-error .fd-form-error { display: block; }
+        .ff-6ae4d20a710a75e6f8beaeab .fd-form-control::placeholder { color: var(--text-muted); opacity: 1; }
 
         /* --- Thank You Section (Redesigned to match website) --- */
         .thank-you {
@@ -925,41 +934,66 @@
             <p>One-to-One Consultation: Customized Strategy for Your Business</p>
             
             <div class="form-container">
-                <div class="ff-6ae4d20a710a75e6f8beaeab" data-ff-el="root" data-ff-version="3" data-ff-type="inline" data-ff-name="inlineNoImage" data-ff-stage="default">
-                    <div data-ff-el="config" data-ff-config="eyJ0cmlnZ2VyIjp7Im1vZGUiOiJpbW1lZGlhdGVseSIsInZhbHVlIjowfSwib25TdWNjZXNzIjp7Im1vZGUiOiJyZWRpcmVjdCIsIm1lc3NhZ2UiOiIiLCJyZWRpcmVjdFVybCI6Imh0dHBzOi8vY29uc3VsdGF0aW9uLnByYW1pa21haGFyamFuLmNvbS5ucC90aGFuay15b3UuaHRtbCJ9LCJjb2kiOmZhbHNlLCJzaG93Rm9yUmV0dXJuVmlzaXRvcnMiOnRydWUsIm5vdGlmaWNhdGlvbiI6ZmFsc2UsImdkcHIiOnsiYWNjZXB0c01hcmtldGluZyI6ZmFsc2UsInByaXZhY3lQb2xpY3kiOnsiZW5hYmxlZCI6ZmFsc2UsIm1hbmRhdG9yeSI6ZmFsc2V9fSwidHJhY2tpbmdDb25maWciOnsibWV0YVBpeGVsSWQiOiIiLCJjb29raWVCYW5uZXJFbmFibGVkIjpmYWxzZSwiZ29vZ2xlQW5hbHl0aWNzSWQiOiIifX0=" style="display:none"></div>
-                    <form id="consultationForm" class="ff-6ae4d20a710a75e6f8beaeab__form" action="https://form.flodesk.com/forms/6ae4d20a710a75e6f8beaeab/submit" method="post" data-ff-el="form">
-                        <div class="fd-form-content" data-ff-el="content"><div data-ff-el="fields">
-                            <div class="form-group">
-                                <label for="name">Your Name</label>
-                                <input type="text" id="name" required placeholder="John Doe" autocomplete="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <input type="email" id="email" name="email" required placeholder="john@example.com" autocomplete="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="business">Business Name</label>
-                                <input type="text" id="business" required placeholder="Your Business LLC" autocomplete="organization">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number (WhatsApp preferred)</label>
-                                <input type="tel" id="phone" required placeholder="+977 98XXXXXXXX" autocomplete="tel">
+                <div class="ff-6ae4d20a710a75e6f8beaeab"
+                     data-ff-el="root"
+                     data-ff-version="3"
+                     data-ff-type="inline"
+                     data-ff-name="inlineNoImage"
+                     data-ff-stage="default">
+                    <div data-ff-el="config"
+                         data-ff-config="eyJ0cmlnZ2VyIjp7Im1vZGUiOiJpbW1lZGlhdGVseSIsInZhbHVlIjowfSwib25TdWNjZXNzIjp7Im1vZGUiOiJtZXNzYWdlIiwibWVzc2FnZSI6IiIsInJlZGlyZWN0VXJsIjoiIn0sImNvaSI6ZmFsc2UsInNob3dGb3JSZXR1cm5WaXNpdG9ycyI6dHJ1ZSwibm90aWZpY2F0aW9uIjpmYWxzZSwiZ2RwciI6eyJhY2NlcHRzTWFya2V0aW5nIjpmYWxzZSwicHJpdmFjeVBvbGljeSI6eyJlbmFibGVkIjpmYWxzZSwibWFuZGF0b3J5IjpmYWxzZX19LCJ0cmFja2luZ0NvbmZpZyI6eyJtZXRhUGl4ZWxJZCI6IiIsImNvb2tpZUJhbm5lckVuYWJsZWQiOmZhbHNlLCJnb29nbGVBbmFseXRpY3NJZCI6IiJ9fQ=="
+                         style="display:none"></div>
+
+                    <form id="consultationForm"
+                          class="ff-6ae4d20a710a75e6f8beaeab__form"
+                          action="https://form.flodesk.com/forms/6ae4d20a710a75e6f8beaeab/submit"
+                          method="post"
+                          data-ff-el="form">
+                        <div class="fd-form-content" data-ff-el="content">
+                            <div data-ff-el="fields">
+                                <div class="form-group fd-form-group">
+                                    <label for="firstName">First name</label>
+                                    <input type="text" id="firstName" class="fd-form-control" name="firstName" required
+                                           placeholder="First name" autocomplete="given-name">
+                                </div>
+
+                                <div class="form-group fd-form-group">
+                                    <label for="lastName">Last name</label>
+                                    <input type="text" id="lastName" class="fd-form-control" name="lastName" required
+                                           placeholder="Last name" autocomplete="family-name">
+                                </div>
+
+                                <div class="form-group fd-form-group">
+                                    <label for="contactNumber">Contact number</label>
+                                    <input type="tel" id="contactNumber" class="fd-form-control" name="fields.contactNumber" required
+                                           placeholder="+977 98XXXXXXXX" autocomplete="tel">
+                                </div>
+
+                                <div class="form-group fd-form-group">
+                                    <label for="email">Email address</label>
+                                    <input type="email" id="email" class="fd-form-control" name="email" required
+                                           placeholder="Your email address" autocomplete="email">
+                                </div>
+
+                                <div class="form-group fd-form-group">
+                                    <label for="anyThingYouWantToSay">Any thing you want to say</label>
+                                    <textarea id="anyThingYouWantToSay" class="fd-form-control"
+                                              name="fields.anyThingYouWantToSay"
+                                              placeholder="Tell us a little about your business or what you need help with."
+                                              rows="3"></textarea>
+                                </div>
+
+                                <!-- Website/social URL is included with the message in Flodesk custom text field; the supplied Flodesk embed does not expose a separate website/social field. -->                                <!-- Flodesk honeypot field -->
+                                <input type="text" name="confirm_email_address" tabindex="-1" autocomplete="off"
+                                       aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
                             </div>
 
-                            <!-- Flodesk fields: name is split automatically; business name is included in the custom details field. -->
-                            <input type="hidden" id="fd-first-name" name="firstName">
-                            <input type="hidden" id="fd-last-name" name="lastName">
-                            <input type="hidden" id="fd-phone" name="fields.contactNumber">
-                            <input type="hidden" id="fd-business-details" name="fields.anyThingYouWantToSay">
-                            <input type="hidden" name="fields.websiteOrSocialMediaLink" value="Not provided">
-                            <input type="text" name="confirm_email_address" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn" data-ff-el="submit">Book Free Consultation</button>
+                            <div class="form-group fd-form-group">
+                                <button type="submit" class="btn fd-btn" data-ff-el="submit">Book Free Consultation</button>
                             </div>
                         </div>
-                        <div class="fd-form-success" data-ff-el="success" style="display:none">
+
+                        <div class="fd-form-success" data-ff-el="success">
                             <p>Thank you! Your consultation request has been received.</p>
                         </div>
                         <div class="fd-form-error" data-ff-el="error" role="alert" aria-live="polite"></div>
@@ -968,7 +1002,35 @@
             </div>
         </div>
     </section>
-<!-- FOOTER -->
+
+    <!-- ========================================== -->
+    <!-- THANK YOU SECTION (REDESIGNED WITH VIDEO) -->
+    <!-- ========================================== -->
+    <section class="thank-you" id="thankYouSection">
+        <div class="container">
+            <div class="thank-you-tag">                <span>●</span> REQUEST RECEIVED
+            </div>
+            <h1>CONGRATULATIONS!</h1>
+            <p>Your request has been received. Watch the short video below, then message me on WhatsApp for the next steps.</p>
+            
+            <div class="video-container">
+                <!-- ========================================== -->
+                <!-- VIMEO VIDEO EMBED -->
+                <!-- Replace YOUR_VIMEO_VIDEO_ID with your actual Vimeo ID -->
+                <!-- ========================================== -->
+                <p style="color: var(--text-muted); font-weight: 400;">[ YOUR VIMEO VIDEO WILL GO HERE ]</p>
+                <!-- Example: <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_VIDEO_ID?badge=0&autopause=0&player_id=0&app_id=58479" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Free Consultation Video"></iframe> -->
+            </div>
+
+            <!-- WhatsApp Link: Pre-filled with "Free AI Marketing Consultation" -->
+            <a href="https://wa.me/9779803812716?text=Hi,%20I%20just%20booked%20a%20Free%20AI%20Marketing%20Consultation.%20Here%20are%20my%20details." target="_blank" class="btn btn-whatsapp">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Message on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <p>&copy; 2024 Pramik Maharjan. All rights reserved.</p>
@@ -998,3 +1060,48 @@
         })(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
 
         window.fd('form:handle', {
+            formId: '6ae4d20a710a75e6f8beaeab',
+            rootEl: '.ff-6ae4d20a710a75e6f8beaeab'
+        });
+
+        (function () {
+            const root = document.querySelector('.ff-6ae4d20a710a75e6f8beaeab');
+            const form = document.getElementById('consultationForm');
+            const bookingSection = document.getElementById('booking');
+            const thankYouSection = document.getElementById('thankYouSection');
+
+            if (!root || !form || !bookingSection || !thankYouSection) return;
+            // Flodesk displays its success element only after a successful submission.
+            const successEl = root.querySelector('[data-ff-el="success"]');
+            let hasRedirected = false;
+
+            function showThankYouAfterSuccess() {
+                if (hasRedirected || !successEl) return;
+
+                const style = window.getComputedStyle(successEl);
+                const isVisible = style.display !== 'none' &&
+                                  style.visibility !== 'hidden' &&
+                                  successEl.getClientRects().length > 0;
+
+                if (isVisible) {
+                    hasRedirected = true;
+                    bookingSection.style.display = 'none';
+                    thankYouSection.style.display = 'block';
+                    thankYouSection.scrollIntoView({ behavior: 'smooth' });
+                    observer.disconnect();
+                }
+            }
+
+            const observer = new MutationObserver(showThankYouAfterSuccess);
+            observer.observe(root, {
+                attributes: true,
+                childList: true,
+                subtree: true,
+                attributeFilter: ['class', 'style']
+            });
+            showThankYouAfterSuccess();
+        })();
+    </script>
+
+</body>
+</html>

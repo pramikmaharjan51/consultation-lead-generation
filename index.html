@@ -1064,36 +1064,7 @@
             rootEl: '.ff-6ae4d20a710a75e6f8beaeab'
         });
 
-        // Fallback redirect: send the top-level page to the thank-you page
-        // as soon as Flodesk marks this form submission successful.
-        (function () {
-            const root = document.querySelector('.ff-6ae4d20a710a75e6f8beaeab');
-            const thankYouUrl = 'https://consultation.pramikmaharjan.com.np/thank-you.html';
-            if (!root) return;
 
-            let hasRedirected = false;
-            function redirectAfterSuccess() {
-                if (hasRedirected) return;
-                const success =
-                    root.classList.contains('fd-has-success') ||
-                    root.getAttribute('data-ff-stage') === 'success' ||
-                    !!root.querySelector('[data-ff-el="success"]:not([hidden])');
-
-                if (success) {
-                    hasRedirected = true;
-                    window.top.location.assign(thankYouUrl);
-                }
-            }
-
-            const observer = new MutationObserver(redirectAfterSuccess);
-            observer.observe(root, {
-                attributes: true,
-                childList: true,
-                subtree: true,
-                attributeFilter: ['class', 'style', 'data-ff-stage', 'hidden']
-            });
-            redirectAfterSuccess();
-        })();
 
     </script>
 

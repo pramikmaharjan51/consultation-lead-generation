@@ -458,6 +458,25 @@
             border-color: var(--primary);
         }
 
+        .form-group textarea {
+            width: 100%;
+            min-height: 110px;
+            padding: 16px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            color: var(--text-color);
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
         .form-group button {
             width: 100%;
             margin-top: 16px;
@@ -814,7 +833,7 @@
                 <a href="#process">Process</a>
                 <a href="#">About</a>
                 <a href="#">FAQ</a>
-            </nav>
+            <av>
 
             <a href="#booking" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem;">Let's talk ↗</a>
         </div>
@@ -904,25 +923,71 @@
             <p>One-to-One Consultation: Customized Strategy for Your Business</p>
             
             <div class="form-container">
-                <form id="consultationForm">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" required placeholder="John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" required placeholder="john@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="business">Business Name</label>
-                        <input type="text" id="business" required placeholder="Your Business LLC">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number (WhatsApp preferred)</label>
-                        <input type="tel" id="phone" required placeholder="+977 98XXXXXXXX">
-                    </div>
-                    <button type="submit" class="btn">Book Free Consultation</button>
-                </form>
+                <div class="ff-6ae4d20a710a75e6f8beaeab"
+                     data-ff-el="root"
+                     data-ff-version="3"
+                     data-ff-type="inline"
+                     data-ff-name="inlineNoImage"
+                     data-ff-stage="default">
+                    <div data-ff-el="config"
+                         data-ff-config="eyJ0cmlnZ2VyIjp7Im1vZGUiOiJpbW1lZGlhdGVseSIsInZhbHVlIjowfSwib25TdWNjZXNzIjp7Im1vZGUiOiJtZXNzYWdlIiwibWVzc2FnZSI6IiIsInJlZGlyZWN0VXJsIjoiIn0sImNvaSI6ZmFsc2UsInNob3dGb3JSZXR1cm5WaXNpdG9ycyI6dHJ1ZSwibm90aWZpY2F0aW9uIjpmYWxzZSwiZ2RwciI6eyJhY2NlcHRzTWFya2V0aW5nIjpmYWxzZSwicHJpdmFjeVBvbGljeSI6eyJlbmFibGVkIjpmYWxzZSwibWFuZGF0b3J5IjpmYWxzZX19LCJ0cmFja2luZ0NvbmZpZyI6eyJtZXRhUGl4ZWxJZCI6IiIsImNvb2tpZUJhbm5lckVuYWJsZWQiOmZhbHNlLCJnb29nbGVBbmFseXRpY3NJZCI6IiJ9fQ=="
+                         style="display:none"></div>
+
+                    <form id="consultationForm"
+                          class="ff-6ae4d20a710a75e6f8beaeab__form"
+                          action="https://form.flodesk.com/forms/6ae4d20a710a75e6f8beaeab/submit"
+                          method="post"
+                          data-ff-el="form">
+                        <div class="fd-form-content" data-ff-el="content">
+                            <div data-ff-el="fields">
+                                <div class="form-group">
+                                    <label for="firstName">First name</label>
+                                    <input type="text" id="firstName" name="firstName" required
+                                           placeholder="First name" autocomplete="given-name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="lastName">Last name</label>
+                                    <input type="text" id="lastName" name="lastName" required
+                                           placeholder="Last name" autocomplete="family-name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contactNumber">Contact number</label>
+                                    <input type="tel" id="contactNumber" name="fields.contactNumber" required
+                                           placeholder="+977 98XXXXXXXX" autocomplete="tel">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email address</label>
+                                    <input type="email" id="email" name="email" required
+                                           placeholder="Your email address" autocomplete="email">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="anyThingYouWantToSay">Any thing you want to say</label>
+                                    <textarea id="anyThingYouWantToSay"
+                                              name="fields.anyThingYouWantToSay"
+                                              placeholder="Tell us a little about your business or what you need help with."
+                                              rows="3"></textarea>
+                                </div>
+
+                                <!-- Website/social URL is included with the message in Flodesk custom text field; the supplied Flodesk embed does not expose a separate website/social field. -->                                <!-- Flodesk honeypot field -->
+                                <input type="text" name="confirm_email_address" tabindex="-1" autocomplete="off"
+                                       aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn" data-ff-el="submit">Book Free Consultation</button>
+                            </div>
+                        </div>
+
+                        <div class="fd-form-success" data-ff-el="success" style="display:none">
+                            <p>Thank you! Your consultation request has been received.</p>
+                        </div>
+                        <div class="fd-form-error" data-ff-el="error" role="alert" aria-live="polite"></div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -932,8 +997,7 @@
     <!-- ========================================== -->
     <section class="thank-you" id="thankYouSection">
         <div class="container">
-            <div class="thank-you-tag">
-                <span>●</span> REQUEST RECEIVED
+            <div class="thank-you-tag">                <span>●</span> REQUEST RECEIVED
             </div>
             <h1>CONGRATULATIONS!</h1>
             <p>Your request has been received. Watch the short video below, then message me on WhatsApp for the next steps.</p>
@@ -962,24 +1026,70 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT FOR FORM SUBMISSION -->
+    <!-- FLODESK FORM INTEGRATION -->
     <script>
-        document.getElementById('consultationForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop the page from reloading
-            
-            // NOTE: This form does not save data to a database yet. 
-            // It just shows the thank you page. 
-            // You will need to connect this to a backend or form service (like Formspree, Netlify Forms, or your own PHP script) later.
-            
-            // Hide the booking section
-            document.getElementById('booking').style.display = 'none';
-            
-            // Show the thank you section
-            document.getElementById('thankYouSection').style.display = 'block';
-            
-            // Scroll to the top of the thank you section
-            document.getElementById('thankYouSection').scrollIntoView({ behavior: 'smooth' });
+        (function (w, d, t, h, s, n) {
+            w.FlodeskObject = n;
+            var fn = function () {
+                (w[n].q = w[n].q || []).push(arguments);
+            };
+            w[n] = w[n] || fn;
+            var f = d.getElementsByTagName(t)[0];
+            var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
+            var sm = d.createElement(t);
+            sm.async = true;
+            sm.type = 'module';
+            sm.src = h + s + '.mjs' + v;
+            f.parentNode.insertBefore(sm, f);
+            var sn = d.createElement(t);
+            sn.async = true;
+            sn.noModule = true;
+            sn.src = h + s + '.js' + v;
+            f.parentNode.insertBefore(sn, f);
+        })(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
+
+        window.fd('form:handle', {
+            formId: '6ae4d20a710a75e6f8beaeab',
+            rootEl: '.ff-6ae4d20a710a75e6f8beaeab'
         });
+
+        (function () {
+            const root = document.querySelector('.ff-6ae4d20a710a75e6f8beaeab');
+            const form = document.getElementById('consultationForm');
+            const bookingSection = document.getElementById('booking');
+            const thankYouSection = document.getElementById('thankYouSection');
+
+            if (!root || !form || !bookingSection || !thankYouSection) return;
+            // Flodesk displays its success element only after a successful submission.
+            const successEl = root.querySelector('[data-ff-el="success"]');
+            let hasRedirected = false;
+
+            function showThankYouAfterSuccess() {
+                if (hasRedirected || !successEl) return;
+
+                const style = window.getComputedStyle(successEl);
+                const isVisible = style.display !== 'none' &&
+                                  style.visibility !== 'hidden' &&
+                                  successEl.getClientRects().length > 0;
+
+                if (isVisible) {
+                    hasRedirected = true;
+                    bookingSection.style.display = 'none';
+                    thankYouSection.style.display = 'block';
+                    thankYouSection.scrollIntoView({ behavior: 'smooth' });
+                    observer.disconnect();
+                }
+            }
+
+            const observer = new MutationObserver(showThankYouAfterSuccess);
+            observer.observe(root, {
+                attributes: true,
+                childList: true,
+                subtree: true,
+                attributeFilter: ['class', 'style']
+            });
+            showThankYouAfterSuccess();
+        })();
     </script>
 
 </body>

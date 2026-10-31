@@ -941,7 +941,7 @@
                      data-ff-name="inlineNoImage"
                      data-ff-stage="default">
                     <div data-ff-el="config"
-                         data-ff-config="eyJ0cmlnZ2VyIjp7Im1vZGUiOiJpbW1lZGlhdGVseSIsInZhbHVlIjowfSwib25TdWNjZXNzIjp7Im1vZGUiOiJyZWRpcmVjdCIsIm1lc3NhZ2UiOiIiLCJyZWRpcmVjdFVybCI6Imh0dHBzOi8vY29uc3VsdGF0aW9uLnByYW1pa21haGFyamFuLmNvbS5ucC90aGFuay15b3UuaHRtbCJ9LCJjb2kiOmZhbHNlLCJzaG93Rm9yUmV0dXJuVmlzaXRvcnMiOnRydWUsIm5vdGlmaWNhdGlvbiI6ZmFsc2UsImdkcHIiOnsiYWNjZXB0c01hcmtldGluZyI6ZmFsc2UsInByaXZhY3lQb2xpY3kiOnsiZW5hYmxlZCI6ZmFsc2UsIm1hbmRhdG9yeSI6ZmFsc2V9fSwidHJhY2tpbmdDb25maWciOnsibWV0YVBpeGVsSWQiOiIiLCJjb29raWVCYW5uZXJFbmFibGVkIjpmYWxzZSwiZ29vZ2xlQW5hbHl0aWNzSWQiOiIifX0="
+                         data-ff-config="eyJ0cmlnZ2VyIjp7Im1vZGUiOiJpbW1lZGlhdGVseSIsInZhbHVlIjowfSwib25TdWNjZXNzIjp7Im1vZGUiOiJyZWRpcmVjdCIsIm1lc3NhZ2UiOiIiLCJyZWRpcmVjdFVybCI6Imh0dHBzOi8vY29uc3VsdGF0aW9uLnByYW1pa21haGFyamFuLmNvbS5ucC90aGFuay15b3UvIn0sImNvaSI6ZmFsc2UsInNob3dGb3JSZXR1cm5WaXNpdG9ycyI6dHJ1ZSwibm90aWZpY2F0aW9uIjpmYWxzZSwiZ2RwciI6eyJhY2NlcHRzTWFya2V0aW5nIjpmYWxzZSwicHJpdmFjeVBvbGljeSI6eyJlbmFibGVkIjpmYWxzZSwibWFuZGF0b3J5IjpmYWxzZX19LCJ0cmFja2luZ0NvbmZpZyI6eyJtZXRhUGl4ZWxJZCI6IiIsImNvb2tpZUJhbm5lckVuYWJsZWQiOmZhbHNlLCJnb29nbGVBbmFseXRpY3NJZCI6IiJ9fQ=="
                          style="display:none"></div>
 
                     <form id="consultationForm"
@@ -1064,51 +1064,8 @@
             rootEl: '.ff-6ae4d20a710a75e6f8beaeab'
         });
 
-        (function () {
-            const root = document.querySelector('.ff-6ae4d20a710a75e6f8beaeab');
-            const bookingSection = document.getElementById('booking');
-            const thankYouSection = document.getElementById('thankYouSection');
-            if (!root || !bookingSection || !thankYouSection) return;
+        // Flodesk handles the post-submit redirect to the dedicated thank-you page.
 
-            let completed = false;
-            function showThankYouAfterSuccess() {
-                if (completed) return;
-
-                const successEl = root.querySelector('[data-ff-el="success"]');
-                const stage = (root.getAttribute('data-ff-stage') || '').toLowerCase();
-                const successVisible = successEl && (
-                    successEl.getClientRects().length > 0 &&
-                    window.getComputedStyle(successEl).visibility !== 'hidden'
-                );
-                const successState = root.classList.contains('fd-has-success') ||
-                                     stage === 'success' ||
-                                     (successVisible && successEl.textContent.trim().length > 0);
-
-                if (!successState) return;
-
-                completed = true;
-                document.documentElement.classList.add('consultation-submitted');
-                bookingSection.hidden = true;
-                bookingSection.style.display = 'none';
-                thankYouSection.hidden = false;
-                thankYouSection.style.setProperty('display', 'block', 'important');
-                thankYouSection.setAttribute('aria-live', 'polite');
-                // Do not redirect, reload, or auto-hide this section. Keep it visible.
-                window.setTimeout(function () {
-                    thankYouSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 150);
-                observer.disconnect();
-            }
-
-            const observer = new MutationObserver(showThankYouAfterSuccess);
-            observer.observe(root, {
-                attributes: true,
-                childList: true,
-                subtree: true,
-                attributeFilter: ['class', 'style', 'data-ff-stage', 'hidden']
-            });
-            showThankYouAfterSuccess();
-        })();
     </script>
 
 </body>

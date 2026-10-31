@@ -485,6 +485,17 @@
             border-radius: 4px;
         }
 
+
+        /* Flodesk embed state handling; retain the site's dark branded form styling. */
+        .ff-6ae4d20a710a75e6f8beaeab .fd-form-control { width: 100%; }
+        .ff-6ae4d20a710a75e6f8beaeab .fd-form-success { display: none; color: var(--text-color); }
+        .ff-6ae4d20a710a75e6f8beaeab.fd-has-success .fd-form-success,
+        .ff-6ae4d20a710a75e6f8beaeab[data-ff-stage="success"] .fd-form-success { display: block; }
+        .ff-6ae4d20a710a75e6f8beaeab.fd-has-success .fd-form-content { display: none; }
+        .ff-6ae4d20a710a75e6f8beaeab .fd-form-error { display: none; color: #ff8b80; margin-top: 12px; }
+        .ff-6ae4d20a710a75e6f8beaeab.fd-has-error .fd-form-error { display: block; }
+        .ff-6ae4d20a710a75e6f8beaeab .fd-form-control::placeholder { color: var(--text-muted); opacity: 1; }
+
         /* --- Thank You Section (Redesigned to match website) --- */
         .thank-you {
             display: none;
@@ -833,7 +844,7 @@
                 <a href="#process">Process</a>
                 <a href="#">About</a>
                 <a href="#">FAQ</a>
-            <av>
+            </nav>
 
             <a href="#booking" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem;">Let's talk ↗</a>
         </div>
@@ -940,33 +951,33 @@
                           data-ff-el="form">
                         <div class="fd-form-content" data-ff-el="content">
                             <div data-ff-el="fields">
-                                <div class="form-group">
+                                <div class="form-group fd-form-group">
                                     <label for="firstName">First name</label>
-                                    <input type="text" id="firstName" name="firstName" required
+                                    <input type="text" id="firstName" class="fd-form-control" name="firstName" required
                                            placeholder="First name" autocomplete="given-name">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group fd-form-group">
                                     <label for="lastName">Last name</label>
-                                    <input type="text" id="lastName" name="lastName" required
+                                    <input type="text" id="lastName" class="fd-form-control" name="lastName" required
                                            placeholder="Last name" autocomplete="family-name">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group fd-form-group">
                                     <label for="contactNumber">Contact number</label>
-                                    <input type="tel" id="contactNumber" name="fields.contactNumber" required
+                                    <input type="tel" id="contactNumber" class="fd-form-control" name="fields.contactNumber" required
                                            placeholder="+977 98XXXXXXXX" autocomplete="tel">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group fd-form-group">
                                     <label for="email">Email address</label>
-                                    <input type="email" id="email" name="email" required
+                                    <input type="email" id="email" class="fd-form-control" name="email" required
                                            placeholder="Your email address" autocomplete="email">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group fd-form-group">
                                     <label for="anyThingYouWantToSay">Any thing you want to say</label>
-                                    <textarea id="anyThingYouWantToSay"
+                                    <textarea id="anyThingYouWantToSay" class="fd-form-control"
                                               name="fields.anyThingYouWantToSay"
                                               placeholder="Tell us a little about your business or what you need help with."
                                               rows="3"></textarea>
@@ -977,12 +988,12 @@
                                        aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
                             </div>
 
-                            <div class="form-group">
-                                <button type="submit" class="btn" data-ff-el="submit">Book Free Consultation</button>
+                            <div class="form-group fd-form-group">
+                                <button type="submit" class="btn fd-btn" data-ff-el="submit">Book Free Consultation</button>
                             </div>
                         </div>
 
-                        <div class="fd-form-success" data-ff-el="success" style="display:none">
+                        <div class="fd-form-success" data-ff-el="success">
                             <p>Thank you! Your consultation request has been received.</p>
                         </div>
                         <div class="fd-form-error" data-ff-el="error" role="alert" aria-live="polite"></div>
